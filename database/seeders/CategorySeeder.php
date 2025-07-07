@@ -14,9 +14,22 @@ class CategorySeeder extends Seeder
     {
         //pleas make dummy category data
         $categories = [
-            ['name' => 'Web Development'],
-            ['name' => 'Mobile Development'],
-            ['name' => 'e-Government'],
+            ['name' => [
+                'id' => 'Desain Grafis',
+                'en' => 'Graphic Design',
+            ]],
+            ['name' => [
+                'id' => 'Pengembangan Web',
+                'en' => 'Web Development',
+            ]],
+            ['name' => [
+                'id' => 'Pengembangan Aplikasi Seluler',
+                'en' => 'Mobile Development',
+            ]],
+            ['name' => [
+                'id' => 'e-Government',
+                'en' => 'e-Government',
+            ]],
         ];
 
         // Clear existing categories

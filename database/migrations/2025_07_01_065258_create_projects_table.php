@@ -14,11 +14,10 @@ return new class extends Migration
 
             $table->integer('category_id');
 
-            $table->string('title');
+            $table->json('title');
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->json('content');
             $table->string('image')->nullable();
-            $table->string('category')->nullable();
             $table->date('project_date')->nullable();
             $table->string('client')->nullable();
             $table->string('url')->nullable();

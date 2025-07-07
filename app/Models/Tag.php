@@ -10,6 +10,11 @@ class Tag extends Model
         'name',
     ];
 
+    
+    protected $casts = [
+        'name' => 'array',
+    ];   
+
     public function projects()
     {
         return $this->belongsToMany(Project::class);

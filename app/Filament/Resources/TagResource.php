@@ -22,15 +22,19 @@ class TagResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel(): string
+    {
+        return __('Tag');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->label('Tag Name')
+                    ->label(__('Tag Name'))
                     ->required()
                     ->maxLength(255)
-                    ->placeholder('Enter tag name')
                     ->columnSpanFull(),
                 //
             ]);
@@ -41,7 +45,7 @@ class TagResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Tag Name')
+                    ->label(__('Tag Name'))
                     ->sortable()
                     ->searchable()
                 //

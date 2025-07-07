@@ -8,6 +8,7 @@ use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -17,19 +18,32 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    // protected static modellab
+
+    // buatkan model label untuk ini menggunakan translasi
+    // protected static ?string $navigationGroup = 'Master Data';
+    // protected static ?string $navigationLabel = 'Kategori';
+
+    public static function getModelLabel(): string
+    {
+        return __('Category');
+    }
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
-                    ->label('Category Name')
+                    ->label(__('Category Name'))
                     ->required()
                     ->maxLength(255)
-                    ->placeholder('Enter category name')
                     ->columnSpanFull(),
                 //
             ]);
@@ -38,14 +52,14 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('name', 'asc')
+            // ->defaultSort('name.id', 'asc')
             ->columns([
                 // TextColumn::make('id')
                 //     ->label('ID')
                 //     ->sortable()
                 //     ->searchable(),
                 TextColumn::make('name')
-                    ->label('Category Name')
+                    ->label(__('Category Name'))
                     ->sortable()
                     ->searchable()
                 //

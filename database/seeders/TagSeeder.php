@@ -14,12 +14,26 @@ class TagSeeder extends Seeder
     {
         //dummy data for tags
         $tags = [
-            ['name' => 'Laravel'],
-            ['name' => 'PHP'],
-            ['name' => 'JavaScript'],
-            ['name' => 'Vue.js'],
-            ['name' => 'React'],
-            ['name' => 'Node.js'],
+            ['name' => [
+                'id' => 'Laravel',
+                'en' => 'Laravel',
+            ]],
+            ['name' => [
+                'id' => 'PHP',
+                'en' => 'PHP',
+            ]],
+            ['name' => [
+                'id' => 'JavaScript',
+                'en' => 'JavaScript',
+            ]],
+            ['name' => [
+                'id' => 'Vue.js',
+                'en' => 'Vue.js',
+            ]],
+            ['name' => [
+                'id' => 'React',
+                'en' => 'React',
+            ]],
         ];
 
         \App\Models\Tag::truncate();

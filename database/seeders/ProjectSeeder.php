@@ -44,7 +44,6 @@ class ProjectSeeder extends Seeder
                 'slug' => 'mobile-development-project',
                 'description' => 'This is a mobile development project.',
                 // 'image' => 'mobile-development.jpg',
-                'category' => 'Mobile Development',
                 'project_date' => '2025-02-01',
                 'client' => 'Client B',
                 'url' => 'https://example.com/mobile-development-project'

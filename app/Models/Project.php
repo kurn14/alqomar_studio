@@ -11,14 +11,18 @@ class Project extends Model
         'category_id',
         'title',
         'slug',
-        'description',
+        'content',
         'image',
-        'category',
         'project_date',
         'client',
         'url',
     ];
 
+    protected $casts = [
+        'title' => 'array',
+        'content' => 'array',
+    ];
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
