@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Tag extends Model
 {
+
+    // https://spatie.be/docs/laravel-translatable/v6/installation-setup
+    use HasTranslations;
+
+    public array $translatable = ['name'];
     protected $fillable = [
         'name',
     ];

@@ -22,7 +22,7 @@ class CategoryResource extends Resource
 
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-folder-open';
 
     // protected static modellab
 
@@ -60,7 +60,9 @@ class CategoryResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('name')
                     ->label(__('Category Name'))
-                    ->sortable()
+                    ->sortable(query: function (Builder $query, string $direction) use ($table): Builder {
+                        return $query->orderBy('name->' . $table->getLivewire()->activeLocale, $direction);
+                    })
                     ->searchable()
                 //
             ])
