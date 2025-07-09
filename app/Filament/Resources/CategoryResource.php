@@ -60,9 +60,10 @@ class CategoryResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('name')
                     ->label(__('Category Name'))
-                    ->sortable(query: function (Builder $query, string $direction) use ($table): Builder {
-                        return $query->orderBy('name->' . $table->getLivewire()->activeLocale, $direction);
-                    })
+                    ->sortable(
+                        // buatkan sortable custom untuk nama dengan translasi dan menyesuaikan kondisi sort asc atau desc
+                        query: fn (Builder $query, string $direction) => $query->orderBy('name->' . app()->getLocale(), $direction)
+                    )
                     ->searchable()
                 //
             ])

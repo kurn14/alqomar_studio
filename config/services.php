@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'disk'  => [
+        'article' => 'articles',
+        'project' => 'projects',
+    ]
+
 ];

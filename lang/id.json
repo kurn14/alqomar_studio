@@ -235,5 +235,10 @@
     "Name": "Nama",
     "Title": "Judul",
     "Project": "Proyek",
-    "Project Name": "Nama Proyek"
+    "Project Name": "Nama Proyek",
+    "Project Title": "Judul Proyek",
+    "Project Image": "Gambar Proyek",
+    "Project Description": "Deskripsi Proyek",
+    "Project Tags": "Tag Proyek",
+    "Project Categories": "Kategori Proyek"
 }

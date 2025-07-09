@@ -29,7 +29,50 @@ class ProjectResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(12)
             ->schema([
+
+                //buatkan 2 section untuk title dan content
+                Forms\Components\Section::make()
+                    ->columnSpan(8)
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->label(__('Project Title'))
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+
+                            //buatkan text area richeditor
+                        Forms\Components\RichEditor::make('content')
+                            ->label(__('Project Description'))
+                            ->required()
+                            ->columnSpanFull()
+
+
+
+
+
+                    ]),
+
+                Forms\Components\Section::make()
+                    ->columnSpan(4)
+                    ->schema([
+                        // buatkan select category
+                        Forms\Components\Select::make('category')
+                            ->label(__('Project Category'))
+                            ->relationship('category', 'name->' . app()->getLocale()),
+                            
+                        //buatkan image upload
+                        Forms\Components\FileUpload::make('image')
+                            ->label(__('Project Image'))
+                            ->image()
+                            ->required()
+                            ->maxSize(1024) // 1MB
+                            ->columnSpanFull()
+                            ->imageEditor()
+                            ->directory(config('services.disk.project'))
+                    ])
+
                 //
             ]);
     }

@@ -48,8 +48,12 @@ class TagResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->label(__('Tag Name'))
-                    ->sortable()
+                    ->sortable(
+                        //buatkan sortable custom untuk nama dengan translasi dan menyesuaikan kondisi sort asc atau desc
+                        query: fn (Builder $query, string $direction) => $query->orderBy('name->' . app()->getLocale(), $direction)
+                    )
                     ->searchable()
+                        //buatkan sea)
                 //
             ])
             ->filters([
