@@ -17,4 +17,9 @@ class CreateProject extends CreateRecord
             Actions\LocaleSwitcher::make(),
         ];
     }
+    
+    public function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
+use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
@@ -42,35 +43,44 @@ class ProjectResource extends Resource
                             ->maxLength(255)
                             ->columnSpanFull(),
 
+                        Forms\Components\TextInput::make('slug')
+                            ->label(__('Slug'))
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+
                             //buatkan text area richeditor
                         Forms\Components\RichEditor::make('content')
                             ->label(__('Project Description'))
                             ->required()
                             ->columnSpanFull()
-
-
-
-
-
                     ]),
 
                 Forms\Components\Section::make()
                     ->columnSpan(4)
                     ->schema([
-                        // buatkan select category
-                        Forms\Components\Select::make('category')
-                            ->label(__('Project Category'))
-                            ->relationship('category', 'name->' . app()->getLocale()),
-                            
                         //buatkan image upload
                         Forms\Components\FileUpload::make('image')
                             ->label(__('Project Image'))
                             ->image()
                             ->required()
-                            ->maxSize(1024) // 1MB
                             ->columnSpanFull()
                             ->imageEditor()
-                            ->directory(config('services.disk.project'))
+                            ->directory(config('services.disk.project')),
+                        // buatkan select category
+                        Forms\Components\Select::make('category_id')
+                            ->label(__('Category'))
+                            ->relationship('category', 'name->' . app()->getLocale()),
+
+                        //buatkan tag menggunakan multiple checklist
+                        Forms\Components\CheckboxList::make('tags')
+                            ->label(__('Tags'))
+                            ->relationship('tags')
+                            ->options(
+                                Tag::orderBy('name->' . app()->getLocale())->get()->pluck('name', 'id')
+                            )
+                            ->required()
+
                     ])
 
                 //
@@ -81,6 +91,26 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
+                //buatkan coloumn untuk title, slug, content, image, project_date, client, url
+                Tables\Columns\ImageColumn::make('image')
+                    ->label(__('Project Image')),
+                Tables\Columns\TextColumn::make('title')
+                    ->label(__('Project Title'))
+                    ->searchable()
+                    ->sortable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label(__('Slug'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label(__('Category'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('tags.name')
+                    ->label(__('Tags'))
+                    ->searchable()
+                    ->sortable()
                 //
             ])
             ->filters([
