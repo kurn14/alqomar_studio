@@ -38,6 +38,12 @@ return [
     'disk'  => [
         'article' => 'articles',
         'project' => 'projects',
+        'testimonial' => 'testimonials',
+    ],
+
+    'locales' => [
+        'available' => ['id', 'en'],
+        'default' => 'id',
     ]
 
 ];

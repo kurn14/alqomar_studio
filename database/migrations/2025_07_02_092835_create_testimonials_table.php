@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('project_id');
             $table->string('name', 100);
             $table->string('position', 100)->nullable();
-            $table->text('message');
+            $table->json('message');
             $table->string('image')->nullable();
             $table->string('company')->nullable();
             $table->timestamps();

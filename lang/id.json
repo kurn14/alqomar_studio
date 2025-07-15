@@ -241,5 +241,12 @@
     "Project Description": "Deskripsi Proyek",
     "Project Tags": "Tag Proyek",
     "Project Categories": "Kategori Proyek",
-    "Slug": "Slug"
+    "Slug": "Slug",
+    "Testimonials": "Testimoni",
+    "Testimonial": "Testimoni",
+    "Position": "Jabatan",
+    "Company": "Perusahaan",
+    "Message": "Pesan",
+    "Testimonial Message": "Pesan Testimoni",
+    "User Image": "Gambar Pengguna"
 }
