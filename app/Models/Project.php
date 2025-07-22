@@ -42,6 +42,11 @@ class Project extends Model
         return $this->hasMany(Testimonial::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'project_tag', 'project_id', 'tag_id');

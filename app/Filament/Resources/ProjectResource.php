@@ -9,6 +9,7 @@ use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -129,6 +130,7 @@ class ProjectResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\ImagesRelationManager::class,
             RelationManagers\TestimonialsRelationManager::class,
         ];
     }

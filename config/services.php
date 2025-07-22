@@ -38,6 +38,7 @@ return [
     'disk'  => [
         'article' => 'articles',
         'project' => 'projects',
+        'project_image' => 'project_images',
         'testimonial' => 'testimonials',
     ],
 

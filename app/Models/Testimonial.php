@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Filament\Resources\Concerns\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 

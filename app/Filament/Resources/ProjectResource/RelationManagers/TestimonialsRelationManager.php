@@ -5,7 +5,7 @@ namespace App\Filament\Resources\ProjectResource\RelationManagers;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\Concerns\Translatable;
+// use Filament\Resources\RelationManagers\Concerns\Translatable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -16,7 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class TestimonialsRelationManager extends RelationManager
 {
 
-    use Translatable;
+    // use Translatable;
+    //tidak usah pakai use Translatable karena bug dari spatie/laravel-translatable untuk relation manager
 
     protected static string $relationship = 'testimonials';
     
@@ -86,7 +87,7 @@ class TestimonialsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\LocaleSwitcher::make(),
+                // Tables\Actions\LocaleSwitcher::make(),
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
