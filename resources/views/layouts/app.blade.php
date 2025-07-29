@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" />
@@ -9,69 +9,92 @@
     <title>{{ $title ?? env('APP_NAME') }}</title>
 </head>
 
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 font-sans">
 
     <!-- Navbar -->
-    <header class="bg-white shadow">
+    <header class="bg-white shadow dark:bg-gray-900 dark:shadow-lg">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold text-amber-700">Al Qomar Studio</div>
+            <div class="text-2xl font-bold text-sky-700 dark:text-sky-300">{{ __('Al Qomar Studio') }}</div>
             <nav class="space-x-6 hidden md:block">
-                <a href="{{ route('home') }}" class="hover:text-amber-600">Home</a>
-                <a href="{{ route('project.index') }}" class="hover:text-amber-600">Our Portfolio</a>
-                <a href="{{ route('service') }}" class="hover:text-amber-600">Services</a>
-                <a href="{{ route('about') }}" class="hover:text-amber-600">About Us</a>
-                <a href="{{ route('contact') }}" class="hover:text-amber-600">Contact</a>
+                <a href="{{ route('home') }}" class="hover:text-sky-600 dark:hover:text-sky-400">{{ __('Home') }}</a>
+                <a href="{{ route('project.index') }}" class="hover:text-sky-600 dark:hover:text-sky-400">{{ __('Projects') }}</a>
+                <a href="{{ route('service') }}" class="hover:text-sky-600 dark:hover:text-sky-400">{{ __('Services') }}</a>
+                <a href="{{ route('about') }}" class="hover:text-sky-600 dark:hover:text-sky-400">{{ __('About Us') }}</a>
+                <a href="{{ route('contact') }}" class="hover:text-sky-600 dark:hover:text-sky-400">{{ __('Contact') }}</a>
             </nav>
-            <a href="#" class="ml-4 px-4 py-2 rounded bg-amber-600 text-white font-medium hover:bg-amber-700">Our Project</a>
+            <!-- Dark Mode Switcher -->
+            <div class="flex items-center space-x-4">
+                <button id="dark-toggle" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition" title="Toggle dark mode">
+                    <i id="dark-toggle-icon" class="bi bi-moon text-xl text-gray-700 dark:text-yellow-300"></i>
+                </button>
+            </div>
         </div>
     </header>
         @yield('content')
     
-    <footer class="bg-orange-200 border-t pt-10 pb-6 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-12 gap-8">
-
-            <!-- Kolom 1: Logo & Slogan -->
-            <div class="md:col-span-5 flex flex-col space-y-6">
-                <div class="flex items-center space-x-4">
-                    <span class="font-bold text-3xl text-gray-700">canvas</span>
-                    <span class="text-gray-600">|</span>
-                    <span class="text-gray-600">
-                        We believe in <b>Simple, Creative &amp; Flexible</b> Design Standards with a Retina &amp; Responsive Approach. Browse the amazing Features this template offers.
-                    </span>
-                </div>
+    <footer class="bg-gray-900 border-t border-gray-800 pt-6 pb-3 dark:bg-gray-950 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo & Slogan -->
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-2xl text-white dark:text-sky-200">{{ __('Al Qomar Studio') }}</span>
+                <span class="hidden md:inline text-gray-500 dark:text-gray-400">|</span>
+                <span class="text-gray-400 text-sm hidden md:inline dark:text-gray-300">{{ __('Simple, Creative & Flexible Design') }}</span>
             </div>
-
-            <!-- Kolom 2: Navigasi -->
-            <div class="md:col-span-7">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div>
-                        <ul class="space-y-1 text-gray-700 text-sm">
-                            <li>&#9654; Home</li>
-                            <li>&#9654; About</li>
-                            <li>&#9654; FAQs</li>
-                            <li>&#9654; Support</li>
-                            <li>&#9654; Contact</li>
-                        </ul>
-                    </div>
-
-                <div class="mt-6">
-                    <span class="text-gray-600 text-sm">Follow us on:</span>
-                    <div class="flex space-x-4 mt-2">
-                        <a href="#" class="text-white-600 hover:text-gray-800"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                </div>
+            <!-- Sosial Media -->
+            <div class="flex gap-4 mt-2 md:mt-0">
+                <a href="#" class="text-gray-300 hover:text-sky-400 dark:text-gray-400 dark:hover:text-sky-300 transition" title="Facebook">
+                    <i class="bi bi-facebook text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-pink-400 dark:text-gray-400 dark:hover:text-pink-300 transition" title="Instagram">
+                    <i class="bi bi-instagram text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 dark:text-gray-400 dark:hover:text-blue-300 transition" title="LinkedIn">
+                    <i class="bi bi-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition" title="YouTube">
+                    <i class="bi bi-youtube text-2xl"></i>
+                </a>
             </div>
-            
         </div>
-        
+        <div class="text-center text-gray-500 text-xs mt-4 dark:text-gray-400">
+            &copy; {{ date('Y') }} {{ __('Al Qomar Studio') }}. {{ __('All rights reserved.') }}
+        </div>
     </footer>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite('resources/js/app.js')
     @stack('scripts')
+    <script>
+        // Dark mode toggle logic
+        const html = document.documentElement;
+        const toggle = document.getElementById('dark-toggle');
+        const icon = document.getElementById('dark-toggle-icon');
+
+        // Set initial mode from localStorage
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            icon.classList.remove('bi-moon');
+            icon.classList.add('bi-brightness-high');
+        } else {
+            html.classList.remove('dark');
+            icon.classList.remove('bi-brightness-high');
+            icon.classList.add('bi-moon');
+        }
+
+        toggle.addEventListener('click', function() {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                icon.classList.remove('bi-moon');
+                icon.classList.add('bi-brightness-high');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('bi-brightness-high');
+                icon.classList.add('bi-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 
 </html>
